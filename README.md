@@ -1,2 +1,2 @@
-# neovim
+# Neovim
 - dot files for neovim
