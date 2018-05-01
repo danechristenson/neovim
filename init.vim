@@ -25,6 +25,7 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install -all'}
 
 call plug#end()
 
+
 "===========================================
 "Deoplete settings
 "===========================================
@@ -50,6 +51,9 @@ let g:tsuquyomi_javascript_support = 1
 let g:tsuquyomi_auto_open = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_serialize=1
+let g:neomake_serialize_abort_on_error = 1
+
 
 "===========================================
 "Syntastic settings
@@ -145,8 +149,8 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 "===========================================
 set syntax
 set number
+set relativenumber
 set tabstop=2 shiftwidth=2 expandtab
 set autoread
 set background=dark
 colorscheme gruvbox
-
