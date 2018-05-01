@@ -22,7 +22,6 @@ Plug 'davidhalter/jedi-vim'
 Plug 'ludovicchabant/vim-gutentags' "ctags
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install -all'}
 
-
 call plug#end()
 
 
@@ -143,6 +142,10 @@ let g:fzf_tags_command = 'ctags -R'
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
+"===========================================
+"NeoMake
+"===========================================
+call neomake#configure#automake('nrwi', 500)
 
 "===========================================
 "User defined
