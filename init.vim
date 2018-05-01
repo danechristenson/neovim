@@ -2,6 +2,7 @@ call plug#begin('~/.nvim/plugged')
 function! DoRemote(arg)
 	UpdateRemotePlugins
 endfunction
+
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote')}
 Plug 'neomake/neomake', { 'on': 'Neomake'}
 Plug 'wokalski/autocomplete-flow'
@@ -19,11 +20,42 @@ Plug 'mhartington/deoplete-typescript'
 Plug 'morhetz/gruvbox'
 Plug 'vim-syntastic/syntastic'
 Plug 'davidhalter/jedi-vim'
-Plug 'ludovicchabant/vim-gutentags' "ctags
+"Plug 'ludovicchabant/vim-gutentags' ctags
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install -all'}
+Plug 'tpope/vim-fugitive'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'raimondi/delimitmate' "close brackets
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
+"===========================================
+"Rainbow Parentheses
+"===========================================
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 "===========================================
 "Deoplete settings
@@ -145,15 +177,16 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 "===========================================
 "NeoMake
 "===========================================
-call neomake#configure#automake('nrwi', 500)
+"call neomake#configure#automake('nrwi', 500)
+
+let g:airline_theme='gruvbox'
 
 "===========================================
 "User defined
 "===========================================
 set syntax
 set number
-set relativenumber
-set tabstop=2 shiftwidth=2 expandtab
 set autoread
 set background=dark
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 colorscheme gruvbox
