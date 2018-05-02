@@ -12,6 +12,7 @@ Plug 'neomake/neomake', { 'on': 'Neomake'}
 Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 "Javascript plugins
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install && install -g tern' }
 Plug 'carlitux/deoplete-ternjs'
@@ -29,8 +30,8 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install -all'}
 Plug 'tpope/vim-fugitive'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'raimondi/delimitmate' "close brackets
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -60,6 +61,10 @@ let g:tsuquyomi_javascript_support = 1
 let g:tsuquyomi_auto_open = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_eslint_maker = {
+      \ 'args':['--no-color', '--format','compact'],
+      \ 'errorformat':'%f:line %l, col %c, %m'
+      \}
 let g:neomake_serialize=1
 let g:neomake_serialize_abort_on_error = 1
 
@@ -100,6 +105,8 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
+let g:jedi#force_py_version=3
+set omnifunc=jedi#completions
 
 "===========================================
 "FZF
@@ -158,6 +165,10 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 "call neomake#configure#automake('nrwi', 500)
 
 let g:airline_theme='gruvbox'
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadChevrons
 
 "===========================================
 "User defined
