@@ -8,7 +8,6 @@ Plug 'neomake/neomake', "{ 'on': 'Neomake'}
 Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
 "Javascript plugins
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install && install -g tern' }
 Plug 'carlitux/deoplete-ternjs'
@@ -176,6 +175,7 @@ let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
 let g:airline_theme='gruvbox'
 
+let g:airline#statusline# = %{fugitive#statusline()}
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
