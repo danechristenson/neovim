@@ -1,14 +1,10 @@
-if &compatible
-  set nocompatible
-endif
-
 call plug#begin('~/.nvim/plugged')
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote')}
-Plug 'neomake/neomake', { 'on': 'Neomake'}
+Plug 'neomake/neomake', "{ 'on': 'Neomake'}
 Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -30,8 +26,8 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install -all'}
 Plug 'tpope/vim-fugitive'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'raimondi/delimitmate' "close brackets
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -164,18 +160,48 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 "===========================================
 "call neomake#configure#automake('nrwi', 500)
 
+
+"===========================================
+"Airline
+"===========================================
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extentions#tabline#fnamemod = ':t'
+let g:airline#extentions#tabline#left_sep = ' '
+let g:airline#extentions#tabline#left_alt_sep = '|'
+let g:airline#extentions#tabline#right_sep = ' '
+let g:airline#extentions#tabline#right_alt_sep = '|'
+let g:airline_left_sep = ' '
+let g:airline_left_alt_sep = '|'
+let g:airline_right_sep = ' '
+let g:airline_right_alt_sep = '|'
 let g:airline_theme='gruvbox'
+
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadChevrons
 
+"Characters to show for expanded TABs, trailing whitespace,
+"and EOL
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,preceeds:<,nbsp:+
+endif
+set list
+
+"highlight all tabs and trailing whitespace
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$\|\t/
+
 "===========================================
 "User defined
 "===========================================
+let mapleader="\<SPACE>"
 set syntax
 set number
 set autoread
+set ignorecase
+set smartcase
+set showmatch "show matching brackets
 set background=dark
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 colorscheme gruvbox
