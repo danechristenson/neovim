@@ -159,7 +159,6 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 "===========================================
 "call neomake#configure#automake('nrwi', 500)
 
-
 "===========================================
 "Airline
 "===========================================
@@ -175,7 +174,9 @@ let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
 let g:airline_theme='gruvbox'
 
-let g:airline#statusline# = %{fugitive#statusline()}
+"===========================================
+"RainbowParentheses
+"===========================================
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
