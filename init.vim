@@ -21,7 +21,7 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-syntastic/syntastic'
 Plug 'davidhalter/jedi-vim'
 Plug 'ludovicchabant/vim-gutentags' " ctags
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install -all'}
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install --all'}
 Plug 'tpope/vim-fugitive'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'raimondi/delimitmate' "close brackets
@@ -149,7 +149,7 @@ let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
 " [Tags] Command to generate tags file
-let g:fzf_tags_command = 'ctags -R'
+let g:fzf_tags_command = 'ctags -R F:\tags'
 
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
@@ -194,6 +194,10 @@ highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\|\t/
 
 "===========================================
+"Work settings
+"===========================================
+set tags=F:\tags;
+"===========================================
 "User defined
 "===========================================
 let mapleader="\<SPACE>"
@@ -205,4 +209,5 @@ set smartcase
 set showmatch "show matching brackets
 set background=dark
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set colorcolumn=80
 colorscheme gruvbox
