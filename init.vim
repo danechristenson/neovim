@@ -27,10 +27,11 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'raimondi/delimitmate' "close brackets
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ernstvanderlinden/vim-coldfusion'
 
 call plug#end()
 
-
+au BufNewFile, BufRead *.cfm,*.cfc setf cfml
 "===========================================
 "Deoplete settings
 "===========================================
@@ -42,6 +43,7 @@ let g:deoplete#enable_refresh_always = 1
 let g:deoplete#max_abbr_width = 0
 let g:deoplete#max_menu_width = 0
 let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+"let g:deoplete#sources#flow#flow_bin = 'flow'
 "call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 
 "===========================================
@@ -211,3 +213,10 @@ set background=dark
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set colorcolumn=80
 colorscheme gruvbox
+set foldmethod=syntax
+set foldlevelstart=1
+set clipboard=unnamedplus
+
+let javaScript_fold=1 "Javascript
+let vimsyn_folding='af' "Vimscript
+
