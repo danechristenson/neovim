@@ -4,19 +4,20 @@ function! DoRemote(arg)
 endfunction
 
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote')}
-Plug 'neomake/neomake', "{ 'on': 'Neomake'}
+Plug 'neomake/neomake' "{ 'on': 'Neomake'}
 Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 "Javascript plugins
 Plug 'ternjs/tern_for_vim', { 'do' : 'npm install && install -g tern' }
 Plug 'carlitux/deoplete-ternjs'
+Plug 'carlitux/deoplete-flow'
 "Typescript Plugins
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Quramy/tsuquyomi', {'do': 'npm install -g typescript'}
 Plug 'mhartington/deoplete-typescript'
 
-
+Plug 'rhysd/vim-clang-format'
 Plug 'morhetz/gruvbox'
 Plug 'vim-syntastic/syntastic'
 Plug 'davidhalter/jedi-vim'
@@ -31,10 +32,18 @@ Plug 'ernstvanderlinden/vim-coldfusion'
 
 call plug#end()
 
+"===========================================
+"ClangFormat settings
+"===========================================
+autocmd FileType c, cpp, js ClangFormatAutoEnable
+let g:clang_format#auto_format=1
+let g:clang_format#auto_format_on_insert_leave=1
+
 au BufNewFile, BufRead *.cfm,*.cfc setf cfml
 "===========================================
 "Deoplete settings
 "===========================================
+let g:python3_host_prog="python3"
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
@@ -43,7 +52,7 @@ let g:deoplete#enable_refresh_always = 1
 let g:deoplete#max_abbr_width = 0
 let g:deoplete#max_menu_width = 0
 let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-"let g:deoplete#sources#flow#flow_bin = 'flow'
+let g:deoplete#sources#flow#flow_bin = 'flow'
 "call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 
 "===========================================
@@ -102,7 +111,7 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
-let g:jedi#force_py_version=3
+"let g:jedi#force_py_version=3
 set omnifunc=jedi#completions
 
 "===========================================
