@@ -3,9 +3,8 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote')}
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
 Plug 'neomake/neomake' "{ 'on': 'Neomake'}
-"Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 "Javascript plugins
@@ -19,7 +18,6 @@ Plug 'mhartington/deoplete-typescript'
 
 Plug 'rhysd/vim-clang-format' "clang format support
 Plug 'vim-syntastic/syntastic'
-"Plug 'w0rp/ale' incompatible with syntastic
 Plug 'davidhalter/jedi-vim'
 Plug 'ludovicchabant/vim-gutentags' " ctags
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install --all'}
@@ -28,6 +26,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'raimondi/delimitmate' "close brackets
 Plug 'vim-airline/vim-airline' "nicer statusline
 Plug 'ernstvanderlinden/vim-coldfusion'
+Plug 'metakirby5/codi.vim'
 
 " Themes
 Plug 'morhetz/gruvbox'
@@ -57,6 +56,12 @@ let g:deoplete#max_abbr_width = 0
 let g:deoplete#max_menu_width = 0
 let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
 let g:deoplete#sources#flow#flow_bin = 'flow'
+let g:deoplete#sources#flow#filetypes = [
+      \'jsx',
+      \'javascript.jsx',
+      \'js',
+      \'javascript.js'
+      \]
 
 "===========================================
 "Javascript settings
@@ -69,13 +74,14 @@ let g:deoplete#sources#tss#javascript_support = 1
 let g:tsuquyomi_javascript_support = 1
 let g:tsuquyomi_auto_open = 1
 let g:tsuquyomi_disable_quickfix = 1
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 let g:neomake_javascript_eslint_maker = {
       \ 'args':['--no-color', '--format','compact'],
       \ 'errorformat':'%f:line %l, col %c, %m'
       \}
 let g:neomake_serialize=1
 let g:neomake_serialize_abort_on_error = 1
+let g:neosnippet#enable_completed_snippet = 1
 
 
 "===========================================
@@ -96,12 +102,14 @@ let g:neomake_error_sign = {
     \}
 
 set statusline+=%*
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
-let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+let g:syntastic_javascript_eslint_exec = 'eslint'
+let g:syntastic_javascript_flow_exe = 'flow'
 
 "===========================================
 "Jedi Vim settings
@@ -228,7 +236,7 @@ set termguicolors
 colorscheme gruvbox
 set foldmethod=syntax
 set foldlevelstart=1
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 
 let javaScript_fold=1 "Javascript
 let vimsyn_folding='af' "Vimscript
