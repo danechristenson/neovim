@@ -5,7 +5,7 @@ endfunction
 
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote')}
 Plug 'neomake/neomake' "{ 'on': 'Neomake'}
-Plug 'wokalski/autocomplete-flow'
+"Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 "Javascript plugins
@@ -17,18 +17,22 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Quramy/tsuquyomi', {'do': 'npm install -g typescript'}
 Plug 'mhartington/deoplete-typescript'
 
-Plug 'rhysd/vim-clang-format'
-Plug 'morhetz/gruvbox'
+Plug 'rhysd/vim-clang-format' "clang format support
 Plug 'vim-syntastic/syntastic'
+"Plug 'w0rp/ale' incompatible with syntastic
 Plug 'davidhalter/jedi-vim'
 Plug 'ludovicchabant/vim-gutentags' " ctags
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install --all'}
 Plug 'tpope/vim-fugitive'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'raimondi/delimitmate' "close brackets
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline' "nicer statusline
 Plug 'ernstvanderlinden/vim-coldfusion'
+
+" Themes
+Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-solarized8'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -39,7 +43,7 @@ autocmd FileType c, cpp, js ClangFormatAutoEnable
 let g:clang_format#auto_format=1
 let g:clang_format#auto_format_on_insert_leave=1
 
-au BufNewFile, BufRead *.cfm,*.cfc setf cfml
+au BufNewFile,BufRead *.cfm,*.cfc setf cfml
 "===========================================
 "Deoplete settings
 "===========================================
@@ -53,7 +57,6 @@ let g:deoplete#max_abbr_width = 0
 let g:deoplete#max_menu_width = 0
 let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
 let g:deoplete#sources#flow#flow_bin = 'flow'
-"call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 
 "===========================================
 "Javascript settings
@@ -97,7 +100,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['eslint', 'flow']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 "===========================================
@@ -111,7 +114,7 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
-"let g:jedi#force_py_version=3
+let g:jedi#force_py_version=3
 set omnifunc=jedi#completions
 
 "===========================================
@@ -183,7 +186,7 @@ let g:airline_left_sep = ' '
 let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
-let g:airline_theme='gruvbox'
+let g:airline_theme='gruvbox' "solarized'
 
 "===========================================
 "RainbowParentheses
@@ -221,6 +224,7 @@ set showmatch "show matching brackets
 set background=dark
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set colorcolumn=80
+set termguicolors
 colorscheme gruvbox
 set foldmethod=syntax
 set foldlevelstart=1
