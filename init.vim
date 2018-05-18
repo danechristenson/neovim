@@ -26,6 +26,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'raimondi/delimitmate' "close brackets
 Plug 'vim-airline/vim-airline' "nicer statusline
 Plug 'ernstvanderlinden/vim-coldfusion'
+Plug 'cflint/cflint-syntastic' "cold fusion linting
 Plug 'metakirby5/codi.vim'
 
 " Themes
