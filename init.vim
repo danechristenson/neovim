@@ -33,15 +33,16 @@ Plug 'metakirby5/codi.vim'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
 Plug 'vim-airline/vim-airline-themes'
-
+Plug 'mhartington/oceanic-next'
 call plug#end()
 
 "===========================================
 "ClangFormat settings
 "===========================================
 autocmd FileType c, cpp, js ClangFormatAutoEnable
-let g:clang_format#auto_format=1
-let g:clang_format#auto_format_on_insert_leave=1
+let g:clang_format#auto_format=0
+let g:clang_format#auto_format_on_insert_leave=0  " turned off by default  until
+                                                  " we start using git
 
 au BufNewFile,BufRead *.cfm,*.cfc setf cfml
 "===========================================
@@ -80,6 +81,11 @@ let g:neomake_javascript_eslint_maker = {
       \ 'args':['--no-color', '--format','compact'],
       \ 'errorformat':'%f:line %l, col %c, %m'
       \}
+let g:neomake_cf_enabled_makers = ['cflint']
+let g:neomake_cf_cflint_maker = {
+      \ 'args':['--no-color', '--format','compact'],
+      \ 'errorformat':'%f:line %l, col %c, %m'
+      \}
 let g:neomake_serialize=1
 let g:neomake_serialize_abort_on_error = 1
 let g:neosnippet#enable_completed_snippet = 1
@@ -111,6 +117,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
 let g:syntastic_javascript_eslint_exec = 'eslint'
 let g:syntastic_javascript_flow_exe = 'flow'
+let g:syntastic_cf_checkers = ['cflint']
+let syntastic_cf_cflint_exe = 'cflint'
 
 "===========================================
 "Jedi Vim settings
@@ -195,7 +203,7 @@ let g:airline_left_sep = ' '
 let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
-let g:airline_theme='gruvbox' "solarized'
+let g:airline_theme='oceanicnext' "gruvbox'
 
 "===========================================
 "RainbowParentheses
@@ -227,6 +235,7 @@ let mapleader="\<SPACE>"
 set syntax
 set number
 set autoread
+set noswapfile
 set ignorecase
 set smartcase
 set showmatch "show matching brackets
@@ -234,7 +243,7 @@ set background=dark
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set colorcolumn=80
 set termguicolors
-colorscheme gruvbox
+colorscheme oceanicNext "gruvbox
 set foldmethod=syntax
 set foldlevelstart=1
 set clipboard+=unnamedplus
