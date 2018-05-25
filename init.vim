@@ -14,7 +14,9 @@ Plug 'carlitux/deoplete-flow'
 "Typescript Plugins
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Quramy/tsuquyomi', {'do': 'npm install -g typescript'}
-Plug 'mhartington/deoplete-typescript'
+"Plug 'mhartington/deoplete-typescript'
+Plug 'mhartington/nvim-typescript'
+Plug 'leafgarland/typescript-vim'
 
 Plug 'rhysd/vim-clang-format' "clang format support
 Plug 'vim-syntastic/syntastic'
@@ -27,7 +29,8 @@ Plug 'raimondi/delimitmate' "close brackets
 Plug 'vim-airline/vim-airline' "nicer statusline
 Plug 'ernstvanderlinden/vim-coldfusion'
 Plug 'cflint/cflint-syntastic' "cold fusion linting
-Plug 'metakirby5/codi.vim'
+Plug 'metakirby5/codi.vim' "live js running
+Plug 'tpope/vim-surround' "cs{l}{r}
 
 " Themes
 Plug 'morhetz/gruvbox'
@@ -62,7 +65,9 @@ let g:deoplete#sources#flow#filetypes = [
       \'jsx',
       \'javascript.jsx',
       \'js',
-      \'javascript.js'
+      \'javascript.js',
+      \'ts',
+      \'typescript.ts'
       \]
 
 "===========================================
@@ -81,6 +86,11 @@ let g:neomake_javascript_eslint_maker = {
       \ 'args':['--no-color', '--format','compact'],
       \ 'errorformat':'%f:line %l, col %c, %m'
       \}
+let g:neomake_typescript_enabled_makers = ['eslint']
+let g:neomake_typescript_eslint_maker = {
+      \ 'args':['--no-color', '--format','compact'],
+      \ 'errorformat':'%f:line %l, col %c, %m'
+      \}
 let g:neomake_cf_enabled_makers = ['cflint']
 let g:neomake_cf_cflint_maker = {
       \ 'args':['--no-color', '--format','compact'],
@@ -90,6 +100,12 @@ let g:neomake_serialize=1
 let g:neomake_serialize_abort_on_error = 1
 let g:neosnippet#enable_completed_snippet = 1
 
+
+"===========================================
+"Typescript settings
+"===========================================
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
 
 "===========================================
 "Syntastic settings
@@ -114,6 +130,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_typescript_checkers = ['eslint', 'flow']
+let g:syntastic_typescript_eslint_exec = 'eslint'
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
 let g:syntastic_javascript_eslint_exec = 'eslint'
 let g:syntastic_javascript_flow_exe = 'flow'
