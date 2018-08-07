@@ -135,8 +135,8 @@ let g:syntastic_typescript_eslint_exec = 'eslint'
 let g:syntastic_javascript_checkers = ['eslint', 'flow']
 let g:syntastic_javascript_eslint_exec = 'eslint'
 let g:syntastic_javascript_flow_exe = 'flow'
-let g:syntastic_cf_checkers = ['cflint']
-let syntastic_cf_cflint_exe = 'cflint'
+"let g:syntastic_cf_checkers = ['cflint']
+"let syntastic_cf_cflint_exe = 'cflint'
 
 "===========================================
 "Jedi Vim settings

@@ -4,5 +4,20 @@
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1"
+  },
+  "dependencies": {
+    "jquery": "/www/js/libs/jquery-3.1.1.min.js",
+    "bootstrap": "/www/js/libs/bootstrap.min.js",
+    "bootbox": "/www/js/libs/bootbox.min.js",
+    "moment": "/www/js/libs/moment.js",
+    "icheck": "/www/js/libs/icheck.min.js",
+    "bootstrap-toggle": "/www/js/libs/bootstrap-toggle.min.js",
+    "bootstrap-datetimepicker": "/www/js/libs/bootstrap-datetimepicker.js",
+    "jquery.dataTables": "/www/js/libs/jquery.dataTables.min.js",
+    "jquery.dataTables.yadcf": "/www/js/libs/jquery.dataTables.yadcf.js",
+    "jquery.validate": "/www/js/libs/jquery.validate.min.js",
+    "fullcalendar": "/www/js/libs/fullcalendar.min.js",
+    "layout": "/www/js/layout.js"
+
   }
 }
